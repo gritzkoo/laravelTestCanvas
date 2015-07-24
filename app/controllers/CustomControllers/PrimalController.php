@@ -8,9 +8,6 @@
 		
 		public function firstTest()
 		{
-			$t = new Chart\VerificaUsuario();
-			$t->getUsuario();
-			Log::info(var_export($t));
-			dd($t);
+			return View::make('flowChartTemplate');
 		}
 	}
