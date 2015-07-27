@@ -10,4 +10,14 @@
 		{
 			return View::make('flowChartTemplate');
 		}
+
+		public function plumbjs()
+		{
+			return View::make('flowcharts.jsplumb');
+		}
+
+		public function gojs()
+		{
+			return View::make('flowcharts.gojsTeste');
+		}
 	}
