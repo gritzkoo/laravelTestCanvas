@@ -16,8 +16,21 @@
 			return View::make('flowcharts.jsplumb');
 		}
 
-		public function gojs()
+		public function gojsList()
 		{
+			$usuario = new stdClass;
+			$usuario->USU_NOME = Auth::user()->USU_NOME;
+			return View::make('flowcharts.userFlowchartList')
+				->with('usuario', $usuario);
+		}
+
+		public function gojs($id = null)
+		{
+			if (!empty($id))
+			{
+
+			}
+			
 			return View::make('flowcharts.gojsTeste');
 		}
 

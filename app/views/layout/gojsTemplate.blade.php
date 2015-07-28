@@ -15,6 +15,8 @@
 
 </head>
 <body onload="init()">
+	
+	@include('layout.topMenu')
 
 	@yield('content')
 

@@ -1,4 +1,5 @@
 <?php
+	use FlowChart\FlowCharts\LoginService as LoginService;
 
 class HomeController extends BaseController {
 
@@ -18,6 +19,41 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		return View::make('hello');
+	}
+
+	public function login()
+	{
+		return View::make('layout.login');
+	}
+
+	public function loginValidate()
+	{
+		$data = Input::all();
+		$result = (new LoginService)->loginMake($data);
+		if ($result['status'] == 'OK')
+		{
+			$retult = (new Login)->criasessao($result['data']);
+			if ($result['status'] == "OK")
+			{
+				return Redirect::to('/abc/gojslist');
+			}
+			else
+			{
+				return View::make('layout.login')
+			 	->with('message', 'Não foi possivel realizar a autenticação.');
+			}
+		}
+		else
+		{
+			return View::make('layout.login')
+			 	->with('message', 'Usuario ou senha inválida');
+		}
+	}
+
+	public function logout()
+	{
+		Session::flush();
+		return View::make('layout.login');
 	}
 
 }

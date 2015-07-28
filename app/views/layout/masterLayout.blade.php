@@ -3,11 +3,13 @@
 	<head>
 		<meta charset="utf-8" lang="pt-br">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Aqui</title>
+		<title>@yield('title')</title>
 		<link rel="stylesheet" href="{{asset('assets/foundation-5.5.2/css/foundation.css')}}">
 		<script src="{{asset('assets/jquery-ui-1.9.2/js/jquery-1.8.3.js')}}"></script>
+		@yield('scripts')
 	</head>
 	<body>
+		@include('layout.topMenu')
 		<div class="row">
 			@yield('content')
 		</div>

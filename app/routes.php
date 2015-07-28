@@ -14,7 +14,7 @@
 /*
 * INCLUDE ALL ROUTES
 */
-	Route::group(array('before' => '','prefix' => ''),function()
+	Route::group(array('before' => 'auth','prefix' => ''),function()
 	{
 		$glob_file = __DIR__.DIRECTORY_SEPARATOR.'routes'.DIRECTORY_SEPARATOR.'*'.DIRECTORY_SEPARATOR.'*';
 		foreach(glob($glob_file) as $file)
@@ -22,21 +22,20 @@
 			log::debug($file);
 			include $file;
 		}
+	
+		Route::get('/', function()
+		{
+			return View::make('hello');
+		});
+		
 	});
 /*________________________________________________*/
 
+	Route::get('/login', array('as' => 'home.login', 'uses' => 'HomeController@login'));
+	Route::post('/login', array('as' => 'home.login.validate', 'uses' => 'HomeController@loginValidate'));
+	Route::get('/logout', array('as' => 'home.logout', 'uses' => 'HomeController@logout'));
 
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
 
-Route::get('/homesss', function()
-{
-	$t = array('temp'=>1, 'mane'=>2, 'other'=>array('q','w','t'));
-	Log::debug($t);
-	return View::make('home.home');
-});
 
 

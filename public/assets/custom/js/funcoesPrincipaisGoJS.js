@@ -212,13 +212,13 @@ function init()
     document.getElementById("mySavedModel").value = myDiagram.model.toJson();
     myDiagram.isModified = false;
 
-    $("#myDiagram").find('canvas').attr('id','myCanvas');
-    var canvas = document.getElementById("myCanvas");
-    var img    = canvas.toDataURL("image/png");
-    var t = img.split('base64,');
-    $("#imagem").val(t[1]);
-    var la = '<img src="'+img+'" />';
-    $("body").append(la);
+    // $("#myDiagram").find('canvas').attr('id','myCanvas');
+    // var canvas = document.getElementById("myCanvas");
+    // var img    = canvas.toDataURL("image/png");
+    // var t = img.split('base64,');
+    // $("#imagem").val(t[1]);
+    // var la = '<img src="'+img+'" />';
+    // $("body").append(la);
 }
 function load() {
     myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);

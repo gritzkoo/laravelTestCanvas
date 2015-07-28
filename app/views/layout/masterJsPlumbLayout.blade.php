@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="{{asset('assets/jsplumb/jquery.jsPlumb.js')}}"></script>
 </head>
 <body>
-	
+	@include('layout.topMenu')
 	@yield('content')
 
 
