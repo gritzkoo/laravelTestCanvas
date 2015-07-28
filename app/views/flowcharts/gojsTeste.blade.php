@@ -14,11 +14,11 @@
 		<div class="small-12 small-centered columns">
 			
 			<span style="display: inline-block; vertical-align: top; padding: 5px; width:15%">
-      			<div id="myPalette" style="border: solid 1px gray; height: 720px"></div>
+      			<div id="myPalette" style="border: solid 1px gray; height: 1024px"></div>
 			</span>
 			
 			<span style="display: inline-block; vertical-align: top; padding: 5px; width:80%">
-				<div id="myDiagram" style="border: solid 1px gray; height: 720px"></div>
+				<div id="myDiagram" style="border: solid 1px gray; height: 2000px"></div>
 			</span>
 
 		</div>
@@ -31,10 +31,22 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-			<textarea id="mySavedModel" style="width:100%;height:300px"></textarea>
+			<form action="{{Route('ACB.gojs.save')}}" method="POST">
+				<textarea name="mySavedModel" id="mySavedModel" style="width:100%;height:300px"></textarea>
+				<input type="hidden" name="imagem" id="imagem" value="">
+				<input type="submit" class="button round" value="Encaminhar">
+			</form>
 		</div>
 	</div>
 	
-
+<script type="text/javascript">
+	$(function()
+	{
+		setTimeout(function(){
+			$("#myDiagram").find('canvas').attr('id','canvasToImage');
+			
+		},1500);
+	});
+</script>
 		
 @stop

@@ -2,9 +2,9 @@
 function init() 
 {
     // if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
-    var $ = go.GraphObject.make;  // for conciseness in defining templates
+    var GO = go.GraphObject.make;  // for conciseness in defining templates
     myDiagram =
-      $(go.Diagram, "myDiagram",  // must name or refer to the DIV HTML element
+      GO(go.Diagram, "myDiagram",  // must name or refer to the DIV HTML element
       {
           initialContentAlignment: go.Spot.Center,
           allowDrop: true,  // must be true to accept drops from the Palette
@@ -49,7 +49,7 @@ function init()
     // control whether the user can draw links from or to the port.
     function makePort(name, spot, output, input) {
       // the port is basically just a small circle that has a white stroke when it is made visible
-      return $(go.Shape, "Circle",
+      return GO(go.Shape, "Circle",
       {
           fill: "transparent",
                   stroke: null,  // this is changed to "white" in the showPorts function
@@ -64,13 +64,13 @@ function init()
     // define the Node templates for regular nodes
     var lightText = 'whitesmoke';
     myDiagram.nodeTemplateMap.add("",  // the default category
-      $(go.Node, "Spot", nodeStyle(),
+      GO(go.Node, "Spot", nodeStyle(),
         // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
-        $(go.Panel, "Auto",
-          $(go.Shape, "Rectangle",
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "Rectangle",
             { fill: "#00A9C9", stroke: null },
             new go.Binding("figure", "figure")),
-          $(go.TextBlock,
+          GO(go.TextBlock,
           {
               font: "bold 11pt Helvetica, Arial, sans-serif",
               stroke: lightText,
@@ -88,11 +88,11 @@ function init()
         makePort("B", go.Spot.Bottom, true, false)
         ));
     myDiagram.nodeTemplateMap.add("Start",
-      $(go.Node, "Spot", nodeStyle(),
-        $(go.Panel, "Auto",
-          $(go.Shape, "Circle",
+      GO(go.Node, "Spot", nodeStyle(),
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "Circle",
             { minSize: new go.Size(40, 40), fill: "#79C900", stroke: null }),
-          $(go.TextBlock, "Start",
+          GO(go.TextBlock, "Start",
             { font: "bold 11pt Helvetica, Arial, sans-serif", stroke: lightText },
             new go.Binding("text"))
           ),
@@ -102,11 +102,11 @@ function init()
         makePort("B", go.Spot.Bottom, true, false)
         ));
     myDiagram.nodeTemplateMap.add("End",
-      $(go.Node, "Spot", nodeStyle(),
-        $(go.Panel, "Auto",
-          $(go.Shape, "Circle",
+      GO(go.Node, "Spot", nodeStyle(),
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "Circle",
             { minSize: new go.Size(40, 40), fill: "#DC3C00", stroke: null }),
-          $(go.TextBlock, "End",
+          GO(go.TextBlock, "End",
             { font: "bold 11pt Helvetica, Arial, sans-serif", stroke: lightText },
             new go.Binding("text"))
           ),
@@ -116,10 +116,10 @@ function init()
         makePort("R", go.Spot.Right, false, true)
         ));
     myDiagram.nodeTemplateMap.add("Comment",
-      $(go.Node, "Auto", nodeStyle(),
-        $(go.Shape, "File",
+      GO(go.Node, "Auto", nodeStyle(),
+        GO(go.Shape, "File",
           { fill: "#EFFAB4", stroke: null }),
-        $(go.TextBlock,
+        GO(go.TextBlock,
         {
             margin: 5,
             maxSize: new go.Size(200, NaN),
@@ -134,7 +134,7 @@ function init()
         ));
     // replace the default Link template in the linkTemplateMap
     myDiagram.linkTemplate =
-      $(go.Link,  // the whole link panel
+      GO(go.Link,  // the whole link panel
       {
           routing: go.Link.AvoidsNodes,
           curve: go.Link.JumpOver,
@@ -148,18 +148,18 @@ function init()
           mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; }
       },
       new go.Binding("points").makeTwoWay(),
-        $(go.Shape,  // the highlight shape, normally transparent
+        GO(go.Shape,  // the highlight shape, normally transparent
           { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
-        $(go.Shape,  // the link path shape
+        GO(go.Shape,  // the link path shape
           { isPanelMain: true, stroke: "gray", strokeWidth: 2 }),
-        $(go.Shape,  // the arrowhead
+        GO(go.Shape,  // the arrowhead
           { toArrow: "standard", stroke: null, fill: "gray"}),
-        $(go.Panel, "Auto",  // the link label, normally not visible
+        GO(go.Panel, "Auto",  // the link label, normally not visible
           { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5},
           new go.Binding("visible", "visible").makeTwoWay(),
-          $(go.Shape, "RoundedRectangle",  // the label shape
+          GO(go.Shape, "RoundedRectangle",  // the label shape
             { fill: "#F8F8F8", stroke: null }),
-          $(go.TextBlock, "Yes",  // the label
+          GO(go.TextBlock, "Yes",  // the label
           {
               textAlign: "center",
               font: "10pt helvetica, arial, sans-serif",
@@ -181,7 +181,7 @@ function init()
     //load();  // load an initial diagram from some JSON text
     // initialize the Palette that is on the left side of the page
     myPalette =
-      $(go.Palette, "myPalette",  // must name or refer to the DIV HTML element
+      GO(go.Palette, "myPalette",  // must name or refer to the DIV HTML element
       {
           "animationManager.duration": 800, // slightly longer than default (600ms) animation
           nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
@@ -189,12 +189,13 @@ function init()
             { category: "Start", text: "Início" },
             { text: "???", figure: "Rectangle" },
             { text: "???", figure: "Diamond" },
+            { text: "???", figure: "Circle" },
             { text: "???", figure: "Triangle" },
             { text: "???", figure: "Pentagon" },
             { text: "???", figure: "Hexagon" },
             { text: "???", figure: "Heptagon" },
             { category: "End", text: "Fim" },
-            { category: "Comment", text: "Comment" }
+            { category: "Comment", text: "Comentário" }
             ])
       });
   }
@@ -210,6 +211,14 @@ function init()
   function save() {
     document.getElementById("mySavedModel").value = myDiagram.model.toJson();
     myDiagram.isModified = false;
+
+    $("#myDiagram").find('canvas').attr('id','myCanvas');
+    var canvas = document.getElementById("myCanvas");
+    var img    = canvas.toDataURL("image/png");
+    var t = img.split('base64,');
+    $("#imagem").val(t[1]);
+    var la = '<img src="'+img+'" />';
+    $("body").append(la);
 }
 function load() {
     myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);

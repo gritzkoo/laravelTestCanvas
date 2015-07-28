@@ -20,4 +20,9 @@
 		{
 			return View::make('flowcharts.gojsTeste');
 		}
+
+		public function saveGojs()
+		{
+			log::debug(Input::all());
+		}
 	}
