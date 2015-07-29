@@ -11,8 +11,8 @@
 			<fieldset>
 				<legend>Escolha qual Plugin gostaria de testar!</legend>
 				<center>
-					<a href="{{ Route('ACB.gojslist') }}" class="button round">GoJS</a>
-					<a href="{{ Route('ACB.plumb') }}" class="button round">PlumbJS</a>
+					<a href="{{ Route('GoJS.gojslist') }}" class="button round">GoJS</a>
+					<a href="{{ Route('PlumbJS.plumb') }}" class="button round">PlumbJS</a>
 				</center>
 			</fieldset>
 		</div>

@@ -27,7 +27,7 @@
 		{
 			return View::make('hello');
 		});
-		Route::get('/chose', array('as' => 'default.chose','uses' => 'PrimalController@pluginChoser'));
+		Route::get('/chose', array('as' => 'default.chose','uses' => 'HomeController@pluginChoser'));
 	});
 /*________________________________________________*/
 

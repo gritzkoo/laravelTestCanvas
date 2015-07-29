@@ -6,13 +6,13 @@ function init()
     myDiagram =
       GO(go.Diagram, "myDiagram",  // must name or refer to the DIV HTML element
       {
-          initialContentAlignment: go.Spot.Center,
+        initialContentAlignment: go.Spot.Center,
           allowDrop: true,  // must be true to accept drops from the Palette
           "LinkDrawn": showLinkLabel,  // this DiagramEvent listener is defined below
           "LinkRelinked": showLinkLabel,
           "animationManager.duration": 800, // slightly longer than default (600ms) animation
           "undoManager.isEnabled": true  // enable undo & redo
-      });
+        });
     // when the document is modified, add a "*" to the title and enable the "Save" button
     myDiagram.addDiagramListener("Modified", function(e) {
       var button = document.getElementById("SaveButton");
@@ -20,10 +20,10 @@ function init()
       var idx = document.title.indexOf("*");
       if (myDiagram.isModified) {
         if (idx < 0) document.title += "*";
-    } else {
+      } else {
         if (idx >= 0) document.title = document.title.substr(0, idx);
-    }
-});
+      }
+    });
     // helper definitions for node templates
     function nodeStyle() {
       return [
@@ -40,9 +40,9 @@ function init()
           // handle mouse enter/leave events to show/hide the ports
           mouseEnter: function (e, obj) { showPorts(obj.part, true); },
           mouseLeave: function (e, obj) { showPorts(obj.part, false); }
+        }
+        ];
       }
-      ];
-  }
     // Define a function for creating a "port" that is normally transparent.
     // The "name" is used as the GraphObject.portId, the "spot" is used to control how links connect
     // and where the port is positioned on the node, and the boolean "output" and "input" arguments
@@ -51,7 +51,7 @@ function init()
       // the port is basically just a small circle that has a white stroke when it is made visible
       return GO(go.Shape, "Circle",
       {
-          fill: "transparent",
+        fill: "transparent",
                   stroke: null,  // this is changed to "white" in the showPorts function
                   desiredSize: new go.Size(8, 8),
                   alignment: spot, alignmentFocus: spot,  // align the port on the main Shape
@@ -59,8 +59,8 @@ function init()
                   fromSpot: spot, toSpot: spot,  // declare where links may connect at this port
                   fromLinkable: output, toLinkable: input,  // declare whether the user may draw links to/from here
                   cursor: "pointer"  // show a different cursor to indicate potential link point
-              });
-  }
+                });
+    }
     // define the Node templates for regular nodes
     var lightText = 'whitesmoke';
     myDiagram.nodeTemplateMap.add("",  // the default category
@@ -72,12 +72,12 @@ function init()
             new go.Binding("figure", "figure")),
           GO(go.TextBlock,
           {
-              font: "bold 11pt Helvetica, Arial, sans-serif",
-              stroke: '#454545',
-              margin: 8,
-              maxSize: new go.Size(160, NaN),
-              wrap: go.TextBlock.WrapFit,
-              editable: true
+            font: "bold 11pt Helvetica, Arial, sans-serif",
+            stroke: '#454545',
+            margin: 8,
+            maxSize: new go.Size(160, NaN),
+            wrap: go.TextBlock.WrapFit,
+            editable: true
           },
           new go.Binding("text").makeTwoWay())
           ),
@@ -121,13 +121,13 @@ function init()
           { fill: "#EFFAB4", stroke: null }),
         GO(go.TextBlock,
         {
-            margin: 5,
-            maxSize: new go.Size(200, NaN),
-            wrap: go.TextBlock.WrapFit,
-            textAlign: "center",
-            editable: true,
-            font: "bold 12pt Helvetica, Arial, sans-serif",
-            stroke: '#454545'
+          margin: 5,
+          maxSize: new go.Size(200, NaN),
+          wrap: go.TextBlock.WrapFit,
+          textAlign: "center",
+          editable: true,
+          font: "bold 12pt Helvetica, Arial, sans-serif",
+          stroke: '#454545'
         },
         new go.Binding("text").makeTwoWay())
         // no ports, because no links are allowed to connect with a comment
@@ -143,12 +143,12 @@ function init()
             new go.Binding("figure", "figure")),
           GO(go.TextBlock,
           {
-              font: "bold 11pt Helvetica, Arial, sans-serif",
-              stroke: '#454545',
-              margin: 8,
-              maxSize: new go.Size(160, NaN),
-              wrap: go.TextBlock.WrapFit,
-              editable: true
+            font: "bold 11pt Helvetica, Arial, sans-serif",
+            stroke: '#454545',
+            margin: 8,
+            maxSize: new go.Size(160, NaN),
+            wrap: go.TextBlock.WrapFit,
+            editable: true
           },
           new go.Binding("text").makeTwoWay())
           ),
@@ -169,12 +169,12 @@ function init()
             new go.Binding("figure", "figure")),
           GO(go.TextBlock,
           {
-              font: "bold 11pt Helvetica, Arial, sans-serif",
-              stroke: '#454545',
-              margin: 8,
-              maxSize: new go.Size(160, NaN),
-              wrap: go.TextBlock.WrapFit,
-              editable: true
+            font: "bold 11pt Helvetica, Arial, sans-serif",
+            stroke: '#454545',
+            margin: 8,
+            maxSize: new go.Size(160, NaN),
+            wrap: go.TextBlock.WrapFit,
+            editable: true
           },
           new go.Binding("text").makeTwoWay())
           ),
@@ -194,12 +194,12 @@ function init()
             new go.Binding("figure", "figure")),
           GO(go.TextBlock,
           {
-              font: "bold 11pt Helvetica, Arial, sans-serif",
-              stroke: '#454545',
-              margin: 8,
-              maxSize: new go.Size(160, NaN),
-              wrap: go.TextBlock.WrapFit,
-              editable: true
+            font: "bold 11pt Helvetica, Arial, sans-serif",
+            stroke: '#454545',
+            margin: 8,
+            maxSize: new go.Size(160, NaN),
+            wrap: go.TextBlock.WrapFit,
+            editable: true
           },
           new go.Binding("text").makeTwoWay())
           ),
@@ -219,12 +219,12 @@ function init()
             new go.Binding("figure", "figure")),
           GO(go.TextBlock,
           {
-              font: "bold 11pt Helvetica, Arial, sans-serif",
-              stroke: '#454545',
-              margin: 8,
-              maxSize: new go.Size(160, NaN),
-              wrap: go.TextBlock.WrapFit,
-              editable: true
+            font: "bold 11pt Helvetica, Arial, sans-serif",
+            stroke: '#454545',
+            margin: 8,
+            maxSize: new go.Size(160, NaN),
+            wrap: go.TextBlock.WrapFit,
+            editable: true
           },
           new go.Binding("text").makeTwoWay())
           ),
@@ -244,12 +244,12 @@ function init()
             new go.Binding("figure", "figure")),
           GO(go.TextBlock,
           {
-              font: "bold 11pt Helvetica, Arial, sans-serif",
-              stroke: '#454545',
-              margin: 8,
-              maxSize: new go.Size(160, NaN),
-              wrap: go.TextBlock.WrapFit,
-              editable: true
+            font: "bold 11pt Helvetica, Arial, sans-serif",
+            stroke: '#454545',
+            margin: 8,
+            maxSize: new go.Size(160, NaN),
+            wrap: go.TextBlock.WrapFit,
+            editable: true
           },
           new go.Binding("text").makeTwoWay())
           ),
@@ -264,18 +264,18 @@ function init()
     myDiagram.linkTemplate =
       GO(go.Link,  // the whole link panel
       {
-          routing: go.Link.AvoidsNodes,
-          curve: go.Link.JumpOver,
-          corner: 5, toShortLength: 4,
-          relinkableFrom: true,
-          relinkableTo: true,
-          reshapable: true,
-          resegmentable: true,
+        routing: go.Link.AvoidsNodes,
+        curve: go.Link.JumpOver,
+        corner: 5, toShortLength: 4,
+        relinkableFrom: true,
+        relinkableTo: true,
+        reshapable: true,
+        resegmentable: true,
           // mouse-overs subtly highlight links:
           mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
           mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; }
-      },
-      new go.Binding("points").makeTwoWay(),
+        },
+        new go.Binding("points").makeTwoWay(),
         GO(go.Shape,  // the highlight shape, normally transparent
           { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
         GO(go.Shape,  // the link path shape
@@ -289,10 +289,10 @@ function init()
             { fill: "#F8F8F8", stroke: null }),
           GO(go.TextBlock, "Yes",  // the label
           {
-              textAlign: "center",
-              font: "10pt helvetica, arial, sans-serif",
-              stroke: "#333333",
-              editable: true
+            textAlign: "center",
+            font: "10pt helvetica, arial, sans-serif",
+            stroke: "#333333",
+            editable: true
           },
           new go.Binding("text", "text").makeTwoWay())
           )
@@ -302,11 +302,15 @@ function init()
     function showLinkLabel(e) {
       var label = e.subject.findObject("LABEL");
       if (label !== null) label.visible = (e.subject.fromNode.data.figure === "Diamond");
-  }
+    }
     // temporary links used by LinkingTool and RelinkingTool are also orthogonal:
     myDiagram.toolManager.linkingTool.temporaryLink.routing = go.Link.Orthogonal;
     myDiagram.toolManager.relinkingTool.temporaryLink.routing = go.Link.Orthogonal;
-    //load();  // load an initial diagram from some JSON text
+    if ($("#FLG_JSON").val().length > 0)
+    {
+      load();  // load an initial diagram from some JSON text
+    }
+    
     // initialize the Palette that is on the left side of the page
     myPalette =
       GO(go.Palette, "myPalette",  // must name or refer to the DIV HTML element
@@ -326,42 +330,70 @@ function init()
             { text: "???", figure: "Circle" },
             { category: "End", text: "Fim" }
             ])
-      });
-  }
+        });
+}
   // Make all ports on a node visible when the mouse is over the node
   function showPorts(node, show) {
     var diagram = node.diagram;
     if (!diagram || diagram.isReadOnly || !diagram.allowLink) return;
     node.ports.each(function(port) {
-        port.stroke = (show ? "white" : null);
+      port.stroke = (show ? "white" : null);
     });
-}
+  }
   // Show the diagram's model in JSON format that the user may edit
-  function save() {
-    document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+  function save()
+  {
+    $("#alerta_nome").hide();
+    document.getElementById("FLG_JSON").value = myDiagram.model.toJson();
     myDiagram.isModified = false;
 
     $("#myDiagram").find('canvas').attr('id','myCanvas');
     var canvas = document.getElementById("myCanvas");
     var img    = canvas.toDataURL("image/png");
     var t = img.split('base64,');
-    $("#imagem").val(t[1]);
-    var la = '<img src="'+img+'" />';
-    $("body").append(la);
-}
-function load() {
-    myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
-}
+    $("#FLG_BLOB").val(t[1]);
+    if ($("#FLG_NOME").val().length == 0)
+    {
+      $("#alerta_nome").show();
+      return;
+    }
+
+    $("#chartContainer").submit();
+    
+  }
+  function load() {
+    myDiagram.model = go.Model.fromJson(document.getElementById("FLG_JSON").value);
+  }
   // add an SVG rendering of the diagram at the end of this page
   function makeSVG() {
     var svg = myDiagram.makeSvg({
-        scale: 0.5
+      scale: 0.5
     });
     svg.style.border = "1px solid black";
     obj = document.getElementById("SVGArea");
     obj.appendChild(svg);
     if (obj.children.length > 0) {
       obj.replaceChild(svg, obj.children[0]);
+    }
   }
-}
+
+  function resizeCanvasV2()
+  {
+    var width =  $('select[name=FLG_WIDTH] :selected').val();
+    var height = $('select[name=FLG_HEIGHT] :selected').val();
+    $("#myDiagram").css('width',width).css('height',height);
+    $("span[name=resolucao]").html(width+'x'+height+' pixels');
+  }
+
+  function preview()
+  {
+    $("#myDiagram").find('canvas').attr('id','myCanvas');
+    var canvas = document.getElementById("myCanvas");
+    var img    = canvas.toDataURL("image/png");
+    var t = img.split('base64,');
+    $("#FLG_BLOB").val(t[1]);
+    var preview = '<center><img src="'+img+'" style="border:solid black 1px; margin:auto;"/></center>';
+    $("#preview").html(preview);
+    $("#myModal").foundation('reveal','open');
+  }
 

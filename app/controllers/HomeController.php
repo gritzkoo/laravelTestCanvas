@@ -1,5 +1,4 @@
 <?php
-	use FlowChart\FlowCharts\LoginService as LoginService;
 
 class HomeController extends BaseController {
 
@@ -19,6 +18,11 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		return View::make('hello');
+	}
+
+	public function pluginChoser()
+	{
+		return View::make('flowcharts.chosePlataform');
 	}
 
 	public function login()

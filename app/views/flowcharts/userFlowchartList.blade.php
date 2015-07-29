@@ -43,7 +43,7 @@
 				<tfoot>
 					<tr>
 						<td colspan="3">
-							<a href="{{ Route('ACB.gojs') }}" class="button round right ">Adicionar novo documento</a>
+							<a href="{{ Route('GoJS.gojs') }}" class="button round right ">Adicionar novo documento</a>
 						</td>
 
 					</tr>
