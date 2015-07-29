@@ -68,12 +68,12 @@ function init()
         // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
         GO(go.Panel, "Auto",
           GO(go.Shape, "Rectangle",
-            { fill: "#00A9C9", stroke: null },
+            { fill: "#fff", stroke: '#000' },
             new go.Binding("figure", "figure")),
           GO(go.TextBlock,
           {
               font: "bold 11pt Helvetica, Arial, sans-serif",
-              stroke: lightText,
+              stroke: '#454545',
               margin: 8,
               maxSize: new go.Size(160, NaN),
               wrap: go.TextBlock.WrapFit,
@@ -132,6 +132,134 @@ function init()
         new go.Binding("text").makeTwoWay())
         // no ports, because no links are allowed to connect with a comment
         ));
+
+    //gritzko palet parts_________________________________________________________________________________________________
+    myDiagram.nodeTemplateMap.add("relacionado",  // the default category
+      GO(go.Node, "Spot", nodeStyle(),
+        // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "Rectangle",
+            { fill: "#fff200", stroke: "#ff0506" },
+            new go.Binding("figure", "figure")),
+          GO(go.TextBlock,
+          {
+              font: "bold 11pt Helvetica, Arial, sans-serif",
+              stroke: '#454545',
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+          },
+          new go.Binding("text").makeTwoWay())
+          ),
+        // four named ports, one on each side:
+        makePort("T", go.Spot.Top, false, true),
+        makePort("L", go.Spot.Left, true, true),
+        makePort("R", go.Spot.Right, true, true),
+        makePort("B", go.Spot.Bottom, true, false)
+        ));
+
+
+    myDiagram.nodeTemplateMap.add("complementar",  // the default category
+      GO(go.Node, "Spot", nodeStyle(),
+        // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "File",
+            { fill: "#fff", stroke: "#000" },
+            new go.Binding("figure", "figure")),
+          GO(go.TextBlock,
+          {
+              font: "bold 11pt Helvetica, Arial, sans-serif",
+              stroke: '#454545',
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+          },
+          new go.Binding("text").makeTwoWay())
+          ),
+        // four named ports, one on each side:
+        makePort("T", go.Spot.Top, false, true),
+        makePort("L", go.Spot.Left, true, true),
+        makePort("R", go.Spot.Right, true, true),
+        makePort("B", go.Spot.Bottom, true, false)
+        ));
+
+    myDiagram.nodeTemplateMap.add("critico",  // the default category
+      GO(go.Node, "Spot", nodeStyle(),
+        // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "Rectangle",
+            { fill: "#fff", stroke: "#000", strokeWidth: 6 },
+            new go.Binding("figure", "figure")),
+          GO(go.TextBlock,
+          {
+              font: "bold 11pt Helvetica, Arial, sans-serif",
+              stroke: '#454545',
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+          },
+          new go.Binding("text").makeTwoWay())
+          ),
+        // four named ports, one on each side:
+        makePort("T", go.Spot.Top, false, true),
+        makePort("L", go.Spot.Left, true, true),
+        makePort("R", go.Spot.Right, true, true),
+        makePort("B", go.Spot.Bottom, true, false)
+        ));
+
+    myDiagram.nodeTemplateMap.add("automatico",  // the default category
+      GO(go.Node, "Spot", nodeStyle(),
+        // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "Rectangle",
+            { fill: "#9b9999", stroke: "#000", strokeWidth: 1 },
+            new go.Binding("figure", "figure")),
+          GO(go.TextBlock,
+          {
+              font: "bold 11pt Helvetica, Arial, sans-serif",
+              stroke: '#454545',
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+          },
+          new go.Binding("text").makeTwoWay())
+          ),
+        // four named ports, one on each side:
+        makePort("T", go.Spot.Top, false, true),
+        makePort("L", go.Spot.Left, true, true),
+        makePort("R", go.Spot.Right, true, true),
+        makePort("B", go.Spot.Bottom, true, false)
+        ));
+
+    myDiagram.nodeTemplateMap.add("especifico",  // the default category
+      GO(go.Node, "Spot", nodeStyle(),
+        // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+        GO(go.Panel, "Auto",
+          GO(go.Shape, "Rectangle",
+            { fill: "#fff", stroke: "#ff0506", strokeWidth: 1, strokeDashArray: [4,2] },
+            new go.Binding("figure", "figure")),
+          GO(go.TextBlock,
+          {
+              font: "bold 11pt Helvetica, Arial, sans-serif",
+              stroke: '#454545',
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+          },
+          new go.Binding("text").makeTwoWay())
+          ),
+        // four named ports, one on each side:
+        makePort("T", go.Spot.Top, false, true),
+        makePort("L", go.Spot.Left, true, true),
+        makePort("R", go.Spot.Right, true, true),
+        makePort("B", go.Spot.Bottom, true, false)
+        ));
+    //__________________________________
     // replace the default Link template in the linkTemplateMap
     myDiagram.linkTemplate =
       GO(go.Link,  // the whole link panel
@@ -186,16 +314,17 @@ function init()
           "animationManager.duration": 800, // slightly longer than default (600ms) animation
           nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
           model: new go.GraphLinksModel([  // specify the contents of the Palette
-            { category: "Start", text: "Início" },
+            { category: "Comment", text: "Comentário" },
             { text: "???", figure: "Rectangle" },
+            { category: "relacionado", text: "IC ou IV Relacionado" },
+            { category: "complementar", text: "Tarefa complementar" },
+            { category: "critico", text: "Tarefa Crítica" },
+            { category: "Start", text: "Início" },
+            { category: "automatico", text: "Tarefa Automática" },
+            { category: "especifico", text: "Tarefa Específica" },
             { text: "???", figure: "Diamond" },
             { text: "???", figure: "Circle" },
-            { text: "???", figure: "Triangle" },
-            { text: "???", figure: "Pentagon" },
-            { text: "???", figure: "Hexagon" },
-            { text: "???", figure: "Heptagon" },
-            { category: "End", text: "Fim" },
-            { category: "Comment", text: "Comentário" }
+            { category: "End", text: "Fim" }
             ])
       });
   }
