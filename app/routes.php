@@ -27,7 +27,7 @@
 		{
 			return View::make('hello');
 		});
-		
+		Route::get('/chose', array('as' => 'default.chose','uses' => 'PrimalController@pluginChoser'));
 	});
 /*________________________________________________*/
 

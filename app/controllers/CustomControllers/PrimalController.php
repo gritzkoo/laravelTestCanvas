@@ -38,4 +38,9 @@
 		{
 			log::debug(Input::all());
 		}
+
+		public function pluginChoser()
+		{
+			return View::make('flowcharts.chosePlataform');
+		}
 	}

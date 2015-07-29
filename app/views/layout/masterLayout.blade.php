@@ -9,7 +9,9 @@
 		@yield('scripts')
 	</head>
 	<body>
-		@include('layout.topMenu')
+		@if(Auth::check())
+			@include('layout.topMenu')
+		@endif
 		<div class="row">
 			@yield('content')
 		</div>

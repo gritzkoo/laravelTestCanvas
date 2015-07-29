@@ -35,7 +35,7 @@ class HomeController extends BaseController {
 			$retult = (new Login)->criasessao($result['data']);
 			if ($result['status'] == "OK")
 			{
-				return Redirect::to('/abc/gojslist');
+				return Redirect::to('/chose');
 			}
 			else
 			{
