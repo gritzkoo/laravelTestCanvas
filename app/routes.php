@@ -19,7 +19,6 @@
 		$glob_file = __DIR__.DIRECTORY_SEPARATOR.'routes'.DIRECTORY_SEPARATOR.'*'.DIRECTORY_SEPARATOR.'*';
 		foreach(glob($glob_file) as $file)
 		{
-			log::debug($file);
 			include $file;
 		}
 	

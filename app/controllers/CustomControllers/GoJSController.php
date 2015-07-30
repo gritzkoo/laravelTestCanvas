@@ -3,6 +3,7 @@
 	{
 		public function gojsList()
 		{
+			dd(public_path());
 			$usuario = new stdClass;
 			$usuario->USU_NOME = Auth::user()->USU_NOME;
 			return View::make('flowcharts.userFlowchartList')
@@ -48,7 +49,9 @@
 		public function saveGojs()
 		{
 			$data = Input::all();
-			debug($data);
+			$data['USU_ID'] = Auth::user()->USU_ID;
+			return json_encode((new FuxogramaSave)->salvarModelo($data));
+
 		}
 
 		

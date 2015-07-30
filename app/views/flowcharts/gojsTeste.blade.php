@@ -59,7 +59,7 @@
 				<label for="Descricao_do_documento">Descrição do documento</label>
 				<textarea name="FLG_DESCRICAO" cols="3" rows="3">{{ isset($data->FLG_DESCRICAO) ? $data->FLG_DESCRICAO : '' }}</textarea>
 			</form>
-				<input type="button" class="button round right" onclick="save()" id="SaveButton" value="Salvar">
+				<input type="button" class="button round right" onclick="save()" value="Salvar">
 				<input type="button" class="button round right" onclick="preview()" style="right:5px;" value="Pré visualizar">
 				{{-- <button class="button round" onclick="load()">Load</button> --}}
 		</div>

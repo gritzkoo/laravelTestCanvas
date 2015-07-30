@@ -358,7 +358,21 @@ function init()
       return;
     }
 
-    $("#chartContainer").submit();
+    $.post($("#chartContainer").attr('action'), $("#chartContainer").serialize())
+      .done(function( data )
+      {
+        data = JSON.parse(data);
+        console.log(data);
+        if(data.status == 'OK')
+        {
+          window.location = BASE_URL + '/GoJS';
+        }
+        else
+        {
+          alert(data.message);
+        }
+      });
+  
     
   }
   function load() {
