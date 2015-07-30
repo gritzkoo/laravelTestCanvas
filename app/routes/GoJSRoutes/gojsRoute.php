@@ -9,4 +9,6 @@
 
 		#AJAX & FORM REQUESTS
 		Route::post('/gojs/save', array('as' => 'GoJS.gojs.save', 'uses' => 'GoJSController@saveGojs'));
+		Route::post('/gojs/historico', array('as' => 'GoJS.gojs.historico', 'uses' => 'GoJSController@getHistoricoFluxograma'));
+		Route::post('/gojs/excluir', array('as' => 'GoJS.gojs.excluir', 'uses' => 'GoJSController@excluirFluxograma'));
 	});

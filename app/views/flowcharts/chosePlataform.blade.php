@@ -12,7 +12,7 @@
 				<legend>Escolha qual Plugin gostaria de testar!</legend>
 				<center>
 					<a href="{{ Route('GoJS.gojslist') }}" class="button round">GoJS</a>
-					<a href="{{ Route('PlumbJS.plumb') }}" class="button round">PlumbJS</a>
+					<button href="{{ Route('PlumbJS.plumb') }}" class="button round alert" disabled title="Em construção">PlumbJS</button>
 				</center>
 			</fieldset>
 		</div>

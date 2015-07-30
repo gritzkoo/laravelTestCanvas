@@ -1,3 +1,5 @@
+//variavel de controle para não fazer multiplas requisições de salvamneto
+var estaSalvando = false;
 
 function init() 
 {
@@ -357,21 +359,24 @@ function init()
       $("#alerta_nome").show();
       return;
     }
-
-    $.post($("#chartContainer").attr('action'), $("#chartContainer").serialize())
-      .done(function( data )
-      {
-        data = JSON.parse(data);
-        console.log(data);
-        if(data.status == 'OK')
+    if(!estaSalvando)
+    {
+      estaSalvando = true;
+      $.post($("#chartContainer").attr('action'), $("#chartContainer").serialize())
+        .done(function( data )
         {
-          window.location = BASE_URL + '/GoJS';
-        }
-        else
-        {
-          alert(data.message);
-        }
-      });
+          data = JSON.parse(data);
+          console.log(data);
+          if(data.status == 'OK')
+          {
+            window.location = BASE_URL + '/GoJS';
+          }
+          else
+          {
+            alert(data.message);
+          }
+        });
+    }
   
     
   }
@@ -409,5 +414,16 @@ function init()
     var preview = '<center><img src="'+img+'" style="border:solid black 1px; margin:auto;"/></center>';
     $("#preview").html(preview);
     $("#myModal").foundation('reveal','open');
+  }
+
+  function buscarHistorico()
+  {
+    var id2 = $("input[name=FLG_ID2]").val();
+    $.post(BASE_URL + '/GoJS/gojs/historico', {FLG_ID2: id2})
+      .done ( function ( data )
+      {
+        $("#ModalHistorico #historico").html(data);
+        $("#ModalHistorico").foundation('reveal','open');
+      });
   }
 

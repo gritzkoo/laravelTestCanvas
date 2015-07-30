@@ -8,26 +8,42 @@ class FuxogramaSave extends \BaseController
 		if (!empty($data))
 		{
 			$tabela = new Fluxograma;
-			$tabela->FLG_VERSAO    = 1;
+			$tabela->FLG_VERSAO = 1;
 
 			if (!empty($data['FLG_ID']))
 			{
-				$tabela->FLG_ID2 = $data['FLG_ID'];
-				$v = Fluxograma::where('FLG_ID2', $data['FLG_ID'])->selectRaw('MAX(FLG_VERSAO) AS FLG_VERSAO')->first();
-				if (!is_null($v))
+				if (!empty($data['FLG_ID2']))
 				{
-					$tabela->FLG_VERSAO = $v->FLG_VERSAO+1;
+					$tabela->FLG_ID2 = $data['FLG_ID2'];
+					$v = Fluxograma::where('FLG_ID2', $data['FLG_ID2'])->selectRaw('MAX(FLG_VERSAO) AS FLG_VERSAO')->first();
+					if (!is_null($v->FLG_VERSAO))
+					{
+						$tabela->FLG_VERSAO = $v->FLG_VERSAO + 1;
+					}
+					else
+					{
+						$tabela->FLG_VERSAO = $tabela->FLG_VERSAO + 1;
+					}
 				}
 				else
 				{
-					$tabela->FLG_VERSAO += 1;
+					$tabela->FLG_ID2 = $data['FLG_ID'];
+					$v = Fluxograma::where('FLG_ID2', $data['FLG_ID'])->selectRaw('MAX(FLG_VERSAO) AS FLG_VERSAO')->first();
+					if (!is_null($v->FLG_VERSAO))
+					{
+						$tabela->FLG_VERSAO = $v->FLG_VERSAO + 1;
+					}
+					else
+					{
+						$tabela->FLG_VERSAO = $tabela->FLG_VERSAO + 1;
+					}
 				}
 				
 			}
 
 			$tabela->USU_ID        = isset($data['USU_ID'])        ? $data['USU_ID']                              : null;
-			$tabela->FLG_JSON      = isset($data['FLG_JSON'])      ? addslashes($data['FLG_JSON'])                : null;
-			$tabela->FLG_BLOB      = isset($data['FLG_BLOB'])      ? addslashes(base64_decode($data['FLG_BLOB'])) : null;
+			$tabela->FLG_JSON      = isset($data['FLG_JSON'])      ? $data['FLG_JSON']                : null;
+			$tabela->FLG_BLOB      = isset($data['FLG_BLOB'])      ? base64_decode($data['FLG_BLOB']) : null;
 			$tabela->FLG_NOME      = isset($data['FLG_NOME'])      ? $data['FLG_NOME']                            : null;
 			$tabela->FLG_DESCRICAO = isset($data['FLG_DESCRICAO']) ? $data['FLG_DESCRICAO']                       : null;
 			$tabela->FLG_WIDTH     = isset($data['FLG_WIDTH'])     ? $data['FLG_WIDTH']                           : null;
@@ -36,7 +52,7 @@ class FuxogramaSave extends \BaseController
 			try
 			{
 				$tabela->save();
-				// DB::commit();
+				DB::commit();
 				return ['status'=>'OK'];
 			}
 			catch (Exception $e)

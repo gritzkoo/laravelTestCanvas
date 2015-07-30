@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>@yield('title')</title>
+	@include('layout.header')
 	<link href="{{asset('assets/GoJS/css/goSamples.css')}}" rel="stylesheet" type="text/css" />  <!-- you don't need to use this -->
 	<script src="{{asset('assets/GoJS/js/go-debug.js')}}"></script>
 	<script src="{{asset('assets/GoJS/js/goSamples.js')}}"></script><!-- this is only for the GoJS Samples framework -->
-	@include('layout.header')
 	<link rel="stylesheet" href="{{asset('assets/foundation-5.5.2/css/foundation.css')}}">
 	<script src="{{asset('assets/jquery-ui-1.9.2/js/jquery-1.8.3.js')}}"></script>
 
@@ -22,8 +22,12 @@
 
 	<script src="{{asset('assets/foundation-5.5.2/js/vendor/jquery.js')}}"></script>
 	<script src="{{asset('assets/foundation-5.5.2/js/foundation.min.js')}}"></script>
+	<script src="{{asset('assets/foundation-5.5.2/js/foundation/foundation.orbit.js')}}"></script>
 	<script>
 		$(document).foundation();
+		$(document).on('opened', '[data-reveal]', function () {
+		    $(window).trigger('resize');
+		});
 	</script>
 </body>
 </html>

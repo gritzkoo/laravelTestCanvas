@@ -1,19 +1,19 @@
 // Highlight.js:
 if (window.require) {
   // require(["../assets/js/highlight.js"], function() {
-  require(["../assets/GoJS/js/highlight.js"], function() {
+  require([BASE_URL + "/assets/GoJS/js/highlight.js"], function() {
     //This function is called after some/script.js has loaded.
   });
 } else {
   // document.write('<script src="../assets/js/highlight.js"></script>');
-  document.write('<script src="../assets/GoJS/js/highlight.js"></script>');
+  document.write('<script src="' + BASE_URL + '/assets/GoJS/js/highlight.js"></script>');
 }
 
 var link = document.createElement("link");
 link.type = "text/css";
 link.rel = "stylesheet";
 // link.href = "../assets/css/highlight.css";
-link.href = "../assets/GoJS/css/highlight.css";
+link.href = BASE_URL +"/assets/GoJS/css/highlight.css";
 document.getElementsByTagName("head")[0].appendChild(link);
 
 /* Copyright (C) 1998-2015 by Northwoods Software Corporation. All Rights Reserved. */

@@ -60,4 +60,9 @@ class HomeController extends BaseController {
 		return View::make('layout.login');
 	}
 
+	public function fancybox()
+	{
+		return View::make('flowcharts.modalHistoricoFluxograma');
+	}
+
 }
