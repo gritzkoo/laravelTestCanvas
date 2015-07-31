@@ -88,7 +88,7 @@
 	function confirmaEscluir(obj_call)
 	{
 		var id = $(obj_call).data('id');
-		$.post(BASE_URL + '/GoJS//gojs/excluir', {FLG_ID:id})
+		$.post(BASE_URL + '/GoJS/gojs/excluir', {FLG_ID:id})
 			.done (function ( data )
 			{
 				data = JSON.parse(data);

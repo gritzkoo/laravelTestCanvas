@@ -34,6 +34,10 @@
 	Route::post('/login', array('as' => 'home.login.validate', 'uses' => 'HomeController@loginValidate'));
 	Route::get('/logout', array('as' => 'home.logout', 'uses' => 'HomeController@logout'));
 	Route::get('/fancybox', array('as' => 'home.fancybox', 'uses' => 'HomeController@fancybox'));
+	Route::get('/phpinfo', function()
+	{
+		phpinfo();
+	});
 
 
 

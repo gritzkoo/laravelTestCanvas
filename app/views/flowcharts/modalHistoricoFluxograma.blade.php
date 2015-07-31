@@ -14,7 +14,7 @@
 				@if(isset($fluxogramas) && count($fluxogramas) > 0)
 					@foreach($fluxogramas as $td)
 						<tr>
-							<td>Versão {{ $td->FLG_VERSAO }} em {{ date("d/m/Y G:h:i", strtotime($td->FLG_TIMESTAMP)) }}</td>
+							<td>Versão {{ $td->FLG_VERSAO }} em {{ date("d/m/Y G:i:s", strtotime($td->FLG_TIMESTAMP)) }}</td>
 							<td>{{ $td->FLG_NOME }}</td>
 							<td>{{ $td->FLG_DESCRICAO }}</td>
 							<td>

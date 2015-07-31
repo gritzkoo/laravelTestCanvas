@@ -5,7 +5,7 @@ class FluxogramaService extends BaseController
 	//valida o acesso aos dados do documento
 	public function validaAcesso($FLG_ID, $USU_ID)
 	{
-		$q = FLuxograma::where('FLG_ID', $FLG_ID)->where('USU_ID', $USU_ID)->first();
+		$q = Fluxograma::where('FLG_ID', $FLG_ID)->where('USU_ID', $USU_ID)->first();
 		if(!$q)
 		{
 			return false;
