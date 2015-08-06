@@ -12,7 +12,8 @@
 				<legend>Escolha qual Plugin gostaria de testar!</legend>
 				<center>
 					<a href="{{ Route('GoJS.gojslist') }}" class="button round">GoJS</a>
-					<a href="{{ Route('PlumbJS.plumb') }}" class="button round" title="Em construção">PlumbJS</a>
+					{{-- <a href="{{ Route('PlumbJS.plumb') }}" class="button round" title="Em construção">PlumbJS</a> --}}
+					<a href="{{ Route('diagramo.home') }}" class="button round" title="Em construção">Diagramo</a>
 				</center>
 			</fieldset>
 		</div>

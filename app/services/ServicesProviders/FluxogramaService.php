@@ -3,9 +3,9 @@ class FluxogramaService extends BaseController
 {
 
 	//valida o acesso aos dados do documento
-	public function validaAcesso($FLG_ID, $USU_ID)
+	public function validaAcesso($FLG_ID, $USU_ID, $FLG_PLUGIN)
 	{
-		$q = Fluxograma::where('FLG_ID', $FLG_ID)->where('USU_ID', $USU_ID)->first();
+		$q = Fluxograma::where('FLG_ID', $FLG_ID)->where('USU_ID', $USU_ID)->where('FLG_PLUGIN', $FLG_PLUGIN)->first();
 		if(!$q)
 		{
 			return false;
@@ -14,29 +14,29 @@ class FluxogramaService extends BaseController
 	}
 
 	//Retorna a lista de documentos por id de usuário
-	public function getListaDocumento($USU_ID)
+	public function getListaDocumento($USU_ID, $FLG_PLUGIN)
 	{
-		return Fluxograma::where('USU_ID', $USU_ID)->whereRaw('ISNULL(FLG_ID2)')->get();
+		return Fluxograma::where('USU_ID', $USU_ID)->whereRaw('ISNULL(FLG_ID2)')->where('FLG_PLUGIN', $FLG_PLUGIN)->get();
 	}
 
 	//Retorna a ultima versão de um fluxograma apartir de um id de registro com FJG_ID2 null
-	public function getUltimaVersaoFLuxograma($FLG_ID, $USU_ID)
+	public function getUltimaVersaoFLuxograma($FLG_ID, $USU_ID, $FLG_PLUGIN)
 	{
 		$check = Fluxograma::where('FLG_ID2', $FLG_ID)
 			->where('USU_ID', $USU_ID)
+			->where('FLG_PLUGIN', $FLG_PLUGIN)
 			->selectRaw('MAX(FLG_VERSAO) AS FLG_VERSAO')->first();
-		debug(['o que esta no check',$check]);
+
 		if (is_null($check->FLG_VERSAO))
 		{
-			debug('dentro do if', $check->FLG_VERSAO);
 			return Fluxograma::where('FLG_ID', $FLG_ID)
 				->where('USU_ID', $USU_ID)
+				->where('FLG_PLUGIN', $FLG_PLUGIN)
 				->select('FLG_ID','FLG_ID2','USU_ID','FLG_JSON','FLG_VERSAO','FLG_NOME','FLG_DESCRICAO','FLG_WIDTH','FLG_HEIGHT')
 				->first();
 		}
 		else
 		{
-			debug('dentro do else', $check->FLG_VERSAO);
 			return Fluxograma::where('FLG_ID2', $FLG_ID)->where('FLG_VERSAO', $check->FLG_VERSAO)
 				->select('FLG_ID','FLG_ID2','USU_ID','FLG_JSON','FLG_VERSAO','FLG_NOME','FLG_DESCRICAO','FLG_WIDTH','FLG_HEIGHT')
 				->first();

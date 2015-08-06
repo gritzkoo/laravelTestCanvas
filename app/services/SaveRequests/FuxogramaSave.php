@@ -38,16 +38,16 @@ class FuxogramaSave extends \BaseController
 						$tabela->FLG_VERSAO = $tabela->FLG_VERSAO + 1;
 					}
 				}
-				
 			}
 
-			$tabela->USU_ID        = isset($data['USU_ID'])        ? $data['USU_ID']                              : null;
+			$tabela->USU_ID        = isset($data['USU_ID'])        ? $data['USU_ID']                  : null;
 			$tabela->FLG_JSON      = isset($data['FLG_JSON'])      ? $data['FLG_JSON']                : null;
 			$tabela->FLG_BLOB      = isset($data['FLG_BLOB'])      ? base64_decode($data['FLG_BLOB']) : null;
-			$tabela->FLG_NOME      = isset($data['FLG_NOME'])      ? $data['FLG_NOME']                            : null;
-			$tabela->FLG_DESCRICAO = isset($data['FLG_DESCRICAO']) ? $data['FLG_DESCRICAO']                       : null;
-			$tabela->FLG_WIDTH     = isset($data['FLG_WIDTH'])     ? $data['FLG_WIDTH']                           : null;
-			$tabela->FLG_HEIGHT    = isset($data['FLG_HEIGHT'])    ? $data['FLG_HEIGHT']                          : null;
+			$tabela->FLG_NOME      = isset($data['FLG_NOME'])      ? $data['FLG_NOME']                : null;
+			$tabela->FLG_DESCRICAO = isset($data['FLG_DESCRICAO']) ? $data['FLG_DESCRICAO']           : null;
+			$tabela->FLG_WIDTH     = isset($data['FLG_WIDTH'])     ? $data['FLG_WIDTH']               : null;
+			$tabela->FLG_HEIGHT    = isset($data['FLG_HEIGHT'])    ? $data['FLG_HEIGHT']              : null;
+			$tabela->FLG_PLUGIN    = isset($data['FLG_PLUGIN'])    ? $data['FLG_PLUGIN']              : null;
 
 			try
 			{

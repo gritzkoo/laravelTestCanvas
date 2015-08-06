@@ -6,7 +6,7 @@
 		{
 			$usuario = new stdClass;
 			$usuario->USU_NOME = Auth::user()->USU_NOME;
-			$fluxogramas = (new FluxogramaService)->getListaDocumento(Auth::user()->USU_ID);
+			$fluxogramas = (new FluxogramaService)->getListaDocumento(Auth::user()->USU_ID, FLuxograma::GOJS);
 
 			return View::make('flowcharts.userFlowchartList')
 				->with('usuario', $usuario)
@@ -19,10 +19,10 @@
 			if (!empty($id))
 			{
 				$FluxogramaService = new FluxogramaService;
-				$validaAcesso = $FluxogramaService->validaAcesso($id, Auth::user()->USU_ID);
+				$validaAcesso = $FluxogramaService->validaAcesso($id, Auth::user()->USU_ID, FLuxograma::GOJS);
 				if ($validaAcesso)
 				{
-					$data = $FluxogramaService->getUltimaVersaoFLuxograma($id, Auth::user()->USU_ID);
+					$data = $FluxogramaService->getUltimaVersaoFLuxograma($id, Auth::user()->USU_ID, FLuxograma::GOJS);
 					return View::make('flowcharts.gojsTeste')
 						->with('data', $data);
 				}
@@ -40,6 +40,7 @@
 		{
 			$data = Input::all();
 			$data['USU_ID'] = Auth::user()->USU_ID;
+			$data['FLG_PLUGIN'] = FLuxograma::GOJS;
 			return json_encode((new FuxogramaSave)->salvarModelo($data));
 		}
 
@@ -47,10 +48,9 @@
 		public function getHistoricoFluxograma()
 		{
 			$data = Input::all();
-			debug($data);
 			$data['USU_ID'] = Auth::user()->USU_ID;
 			$fluxograma = new FluxogramaService;
-			$t = $fluxograma->validaAcesso($data['FLG_ID2'], $data['USU_ID']);
+			$t = $fluxograma->validaAcesso($data['FLG_ID2'], $data['USU_ID'], fluxograma::GOJS);
 			if ($t)
 			{
 				$result = $fluxograma->getHistoricoFluxograma($data['FLG_ID2']);
@@ -69,7 +69,7 @@
 		{
 			$data = Input::all();
 			$FluxogramaService = new FluxogramaService;
-			$validaAcesso = $FluxogramaService->validaAcesso($data['FLG_ID'], Auth::user()->USU_ID);
+			$validaAcesso = $FluxogramaService->validaAcesso($data['FLG_ID'], Auth::user()->USU_ID, Fluxograma::GOJS);
 			if ($validaAcesso)
 			{
 				return json_encode($FluxogramaService->excluiFluxograma($data['FLG_ID']));
